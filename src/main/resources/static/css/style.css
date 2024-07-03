@@ -1,0 +1,391 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #222;
+    color: #FFF;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+.container_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+    height: auto;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.card .price {
+    font-weight: bold;
+    color: #FF4500; /* Цвет цены, замените на нужный */
+    font-size: 18px;
+}
+
+.card .quantity {
+    color: #808080; /* Цвет количества, замените на нужный */
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.card a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #007bff; /* Цвет кнопки, замените на нужный */
+    border-radius: 5px;
+}
+
+.card a:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении, замените на нужный */
+}
+
+.card form {
+    margin-top: 10px;
+}
+nav ul li a {
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.navig {
+    margin: 15px;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navi {
+    margin: 15px;
+    color: #FFF;
+    display: flex;
+}
+
+.Authorization {
+    display: flex;
+    margin: 15px;
+}
+
+.logo {
+    width: 15px !important; /* использование !important для усиления приоритета */
+    height: 15px !important;
+    flex-shrink: 0 !important;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.galaxy {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.galaxy img {
+    width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    z-index: 1;
+}
+
+.stripe1 {
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.text {
+    color: #000;
+    text-align: left;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #222;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.links a {
+    margin-right: 40px;
+    color: #FFD700;
+    text-decoration: none;
+}
+
+.info {
+    margin-top: 0px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.images {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start; /* Поддерживаемое значение для justify-content */
+    align-items: center; /* Замените на поддерживаемое значение, например, flex-start или center */
+}
+
+.images img {
+    width: 10px;
+    margin-right: 15px;
+}
+
+.container_card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px #FFD700;
+    margin: 50px;
+    padding: 10px;
+    width: 300px;
+    height: 500px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.card img {
+    max-width: 100%;
+}
+
+.card h2,
+.card p {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card .price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card .quantity {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.admin-menu {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.admin-menu h2 {
+    text-align: center;
+}
+
+.admin-menu p {
+    text-align: center;
+}
+
+.admin-menu .button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.admin-menu .button-container a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.admin-menu .button-container a:hover {
+    background-color: #FFD700;
+}
+
+.container11 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container12 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card11 {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    float: left;
+}
+
+.product-page {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    flex: 1;
+    text-align: center;
+}
+
+.product-image img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.product-details {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.add-to-cart {
+    margin-top: 20px;
+}
+/* Пример стилей для страницы товара */
+.product-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.product-image {
+    flex: 1;
+}
+
+.product-image img {
+    max-width: 100%;
+}
+
+.product-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.product-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    margin-bottom: 8px;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.add-to-cart:hover {
+    background-color: #45a049;
+}

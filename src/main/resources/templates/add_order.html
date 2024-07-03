@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление заказа поставщику</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <style>
+        /* Общие стили для страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        /* Стили для header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            margin-left: 20px; /* Отступ слева для логотипа */
+        }
+        .logo img {
+            height: 30px; /* Устанавливаем высоту логотипа */
+        }
+
+        .nav-menu {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin-left: 20px; /* Отступ между элементами меню */
+        }
+
+        .nav-menu li:first-child {
+            margin-left: auto; /* Первый элемент (логотип) будет сдвинут влево */
+        }
+
+
+        /* Стили для основного контента */
+        main {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .form-container {
+            width: 30%;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 65%;
+            justify-content: space-between;
+        }
+
+        .card {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
+
+            .form-container, .cards-container {
+                width: 100%;
+            }
+        }
+
+        /* Стили для формы */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input[type="datetime-local"],
+        form input[type="text"],
+        form select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form input[type="submit"] {
+            background-color: #ff8c00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #ff7a00;
+        }
+
+        /* Стили для footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px; /* Уменьшаем внутренние отступы */
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 60px; /* Устанавливаем фиксированную высоту */
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100%; /* Заполняем высоту футера */
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            margin-right: 15px; /* Уменьшаем отступ между ссылками */
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .footer-info {
+            font-size: 14px;
+        }
+
+        .footer-info h4 {
+            margin-bottom: 5px; /* Уменьшаем отступ после заголовка */
+        }
+
+        .footer-info p {
+            margin: 0;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 3px; /* Уменьшаем верхний отступ */
+        }
+
+        .footer-social img {
+            width: 18px; /* Уменьшаем размер иконок социальных сетей */
+            margin-right: 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img th:src="@{/img/logo.png}" alt="Логотип" style="height: 30px;">
+        </div>
+        <ul class="nav-menu">
+            <li><a th:href="@{/admin}">Панель администратора</a></li>
+            <li><a th:href="@{/Authorization}"><img th:src="@{/img/Authorization.png}" alt="Авторизоваться"></a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="content-wrapper">
+        <div class="form-container">
+            <h1>Добавление заказа поставщику</h1>
+            <form th:action="@{/supplies/add}" method="post">
+                <label for="supplierId">ID поставщика:</label>
+                <select id="supplierId" name="supplier.id" required>
+                    <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                </select><br>
+
+                <label for="supplyDate">Дата заказа:</label>
+                <input type="datetime-local" id="supplyDate" name="supplyDate" required><br>
+
+                <label for="totalCost">Общая стоимость:</label>
+                <input type="text" id="totalCost" name="totalCost" required><br>
+
+                <input type="submit" value="Добавить заказ">
+            </form>
+        </div>
+
+        <div class="cards-container">
+            <div th:each="supply : ${supplies}" class="card">
+                <h2 th:text="${supply.supplier.name}">Supplier Name</h2>
+                <p><strong>ID поставщика:</strong> <span th:text="${supply.supplier.id}">Supplier ID</span></p>
+                <p><strong>Дата заказа:</strong> <span th:text="${supply.supplyDate}">Supply Date</span></p>
+                <p><strong>Общая стоимость:</strong> <span th:text="${supply.totalCost}">Total Cost</span></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a href="#">О нас</a>
+            <a href="/">Каталог</a>
+            <a href="#">Корзина</a>
+        </div>
+        <div class="info">
+            <p>
+            <h4>Контакты</h4>
+            <h4>8(800) 555-24-99</h4>
+            <h4>Город Кострома, улица</h4>
+            <h4>Свердова, дом 27, квартира 7</h4>
+            <h4>E-mail: DBStore@mail.ru </h4>
+            </p>
+        </div>
+        <div class="images">
+            <img th:src="@{/img/vk.png}" alt="Vkontakte"><a href="#"></a>
+            <img th:src="@{/img/fc.png}" alt="Facebook"><a href="#"></a>
+            <img th:src="@{/img/tw.png}" alt="Twitter"><a href="#"></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

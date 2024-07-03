@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="rus" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            height: 60px;
+        }
+
+        .navig {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+        .navi {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navi li {
+            margin-right: 20px;
+        }
+
+        .navi li img {
+            height: 40px;
+        }
+
+        .avor {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .avor li {
+            margin-left: 20px;
+        }
+
+        .avor li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .avor li a img {
+            height: 25px;
+            margin-right: 5px;
+        }
+
+        .container12 {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            padding: 20px;
+        }
+
+        .content {
+            flex: 1; /* Занимает доступное пространство */
+        }
+
+        .text {
+            text-align: left; /* Выравнивание текста по левому краю */
+        }
+
+        .map {
+            width: 400px; /* Увеличиваем ширину карты */
+            height: 400px; /* Увеличиваем высоту карты */
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .links a {
+            margin-right: 20px;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .info {
+            font-size: 14px;
+        }
+
+        .info h4 {
+            margin-bottom: 5px;
+        }
+
+        .info p {
+            margin: 0;
+        }
+
+        .images img {
+            width: 25px;
+            margin-right: 20px;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Карточка товара</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav class="navig">
+        <ul class="navi">
+            <li><img th:src="@{/img/logo.png}" alt="Logo"></li>
+            <li><a th:href="@{/about}">О нас</a></li>
+            <li><a th:href="@{/}">Каталог</a></li>
+            <li><a th:href="@{/bascet}">Корзина</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="product-page">
+    <div class="product-image">
+        <img th:src="@{${product.imgUrl}}" th:alt="${product.name}">
+    </div>
+    <div class="product-details">
+        <h2 th:text="${product.name}"></h2>
+        <p th:text="'Цена: ' + ${product.price}"></p>
+        <p th:text="'Описание: ' + ${product.description}"></p>
+        <!-- Добавляем атрибут data-product-id -->
+        <button class="add-to-cart" th:attr="data-product-id=${product.id}" onclick="addToCart(this.getAttribute('data-product-id'))">Добавить в корзину</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a th:href="@{/about}">О нас</a>
+            <a th:href="@{/}">Каталог</a>
+            <a th:href="@{/bascet}">Корзина</a>
+        </div>
+        <div class="info">
+            <h4>Контакты</h4>
+            <p>8(800) 555-24-99<br>
+                Город Кострома, улица<br>
+                Свердова, дом 27, квартира 7<br>
+                E-mail: DBStore@mail.ru</p>
+        </div>
+        <div class="images">
+            <img th:src="@{/img/vk.png}" alt="Vkontakte">
+            <img th:src="@{/img/fc.png}" alt="Facebook">
+            <img th:src="@{/img/fw.png}" alt="Twitter">
+        </div>
+    </div>
+</footer>
+
+<script>
+    function addToCart(productId) {
+        fetch('/bascet/add/' + productId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Товар успешно добавлен в корзину');
+                    window.location.href = '/bascet'; // Перенаправление на страницу корзины при успехе
+                } else {
+                    console.error('Ошибка при добавлении товара в корзину');
+                    alert('Ошибка при добавлении товара в корзину');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при добавлении товара в корзину');
+            });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .auth-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button[type="submit"],
+    .register-link {
+      padding: 10px 20px;
+      background-color: #ff8c00;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+      margin-top: 10px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    button[type="submit"]:hover,
+    .register-link:hover {
+      background-color: #ff8c00;
+    }
+
+    .register-link {
+      display: block;
+      text-decoration: none;
+      color: #0f1317;
+      margin-top: 10px;
+    }
+
+    .register-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="auth-container">
+  <h2>Авторизация</h2>
+  <form action="/Authorization" method="post">
+    <div>
+      <label for="username">Имя пользователя:</label>
+      <input type="text" id="username" name="username">
+    </div>
+    <div>
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div>
+      <button type="submit">Войти</button>
+    </div>
+  </form>
+  <a href="/register" class="register-link">Еще не зарегистрированы? Зарегистрируйтесь</a>
+</div>
+</body>
+</html>

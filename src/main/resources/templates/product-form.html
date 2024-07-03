@@ -1,0 +1,32 @@
+<form action="/products/save" method="post" th:object="${newProduct}">
+    <input type="hidden" th:field="*{id}">
+    <div class="form-group">
+        <label>Название</label>
+        <input type="text" class="form-control" th:field="*{name}">
+    </div>
+    <div class="form-group">
+        <label>Описание</label>
+        <input type="text" class="form-control" th:field="*{description}">
+    </div>
+    <div class="form-group">
+        <label>Цена</label>
+        <input type="number" class="form-control" th:field="*{price}">
+    </div>
+    <div class="form-group">
+        <label>Количество</label>
+        <input type="number" class="form-control" th:field="*{quantity}">
+    </div>
+    <div class="form-group">
+        <label>URL изображения</label>
+        <input type="text" class="form-control" th:field="*{imgUrl}">
+    </div>
+    <div class="form-group">
+        <label>Категория</label>
+        <select class="form-control" th:field="*{category.id}" required>
+            <option value="">Выберите категорию</option>
+            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Сохранить продукт</button>
+</form>

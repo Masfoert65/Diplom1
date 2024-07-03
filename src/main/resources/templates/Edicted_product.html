@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}">
+    <script th:src="@{/js/delete_product.js}"></script>
+</head>
+<body>
+<header>
+    <nav class="navig">
+        <ul class="navi">
+            <li class="logo"><img class="logo" th:src="@{/img/logo.png}" alt="Логотип"></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="/">Каталог</a></li>
+            <li><a href="#">Корзина</a></li>
+            <li><a href="#">Доставка и оплата</a></li>
+        </ul>
+        <ul class="avor">
+            <li><a href="/Authorization"><img class="Authorization" th:src="@{/img/Authorization.png}" alt="Авторизоваться"></a></li>
+        </ul>
+    </nav>
+</header>
+
+<h1>Каталог товаров</h1>
+<form action="#" method="post" th:action="@{/catalog/save}" th:object="${catalogForm}">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.description}"></td>
+            <td><input type="text" class="edit-input" th:field="*{productPrices[__${product.id}__]}" th:value="${product.price}"></td>
+            <td><input type="text" class="edit-input" th:field="*{productQuantities[__${product.id}__]}" th:value="${product.quantity}"></td>
+            <td th:text="${product.photo}"></td>
+            <td>
+                <button class="delete-button" th:onclick="'deleteProduct(' + ${product.id} + ')'">Удалить</button>
+            </td>
+        </tr>
+    </table>
+    <button class="save-button" type="submit">Сохранить изменения</button>
+</form>
+
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a href="#">О нас</a>
+            <a href="/">Каталог</a>
+            <a href="#">Корзина</a>
+        </div>
+        <div class="info">
+            <p>
+            <h4>Контакты</h4>
+            <h4>8(800) 555-24-99</h4>
+            <h4>Город Кострома, улица</h4>
+            <h4>Свердова, дом 27, квартира 7</h4>
+            <h4>E-mail: DBStore@mail.ru </h4>
+            </p>
+        </div>
+        <div class="images">
+            <img th:src="@{/img/vk.png}" alt="Vkontakte"><a href="#"></a>
+            <img th:src="@{/img/fc.png}" alt="Facebook"><a href="#"></a>
+            <img th:src="@{/img/tw.png}" alt="Twitter"><a href="#"></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

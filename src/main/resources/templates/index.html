@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Store</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        height: 60px; /* Устанавливаем высоту заголовка */
+    }
+
+    .navig {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 100%;
+    }
+
+    .navi {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navi li {
+        margin-right: 20px;
+    }
+
+    .navi li img {
+        height: 40px; /* Уменьшаем высоту логотипа */
+    }
+
+    .avor {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .avor li {
+        margin-left: 20px;
+    }
+
+    .avor li a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .avor li a img {
+        height: 25px; /* Уменьшаем высоту иконки авторизации */
+        margin-right: 5px;
+    }
+</style>
+<body>
+<header>
+    <nav class="navig">
+        <ul class="navi">
+            <li><img th:src="@{/img/logo.png}" alt="Logo"></li>
+            <li><a th:href="@{/about}">О нас</a></li>
+            <li><a th:href="@{/}">Каталог</a></li>
+            <li><a th:href="@{/basket}">Корзина</a></li>
+        </ul>
+        <ul class="avor">
+            <li><a th:href="@{/Authorization}"><img class="Authorization" th:src="@{/img/Authorization.png}" alt="Авторизоваться"></a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="galaxy">
+        <div class="text-overlay">
+            <h2>Самый прочный складной Galaxy</h2>
+            <h4>Galaxy Внутри и снаружи, Samsung Galaxy Z Fold4 создан из материалов, которые не только потрясающе выглядят, но и готовы к любым испытаниям. Передняя и задняя панели выполнены из самого прочного стекла, когда-либо использованном в складном устройстве – Corning Gorilla Glass Victus+, а в сочетании с защитной алюминиевой рамкой Galaxy Z Fold4 можно назвать самым прочным складным устройством в мире.</h4>
+        </div>
+        <img th:src="@{/img/galaxy.png}" alt="Phone" style="width: 70%;">
+    </div>
+
+    <div class="stripe1">
+        <h2>Каталог товаров</h2>
+    </div>
+
+    <div class="container_card">
+        <div th:each="product : ${products}" class="card">
+            <img th:src="${product.imgUrl}" alt="Product Image" style="max-width: 150px; max-height: 2100px;">
+            <h2 th:text="${product.name}">Product Name</h2>
+
+            <p class="price" th:text="'Цена: ' + ${product.price} + ' ₽'">Цена товара</p>
+            <a th:href="@{'/products/details/' + ${product.id}}" class="btn btn-primary">Подробнее</a>
+        </div>
+
+    </div>
+</main>
+
+<div class="stripe1">
+    О компании
+</div>
+<div class="text">
+    <h3>Мы – первый омниканальный ритейлер бытовой техники и электроники в России, лидер по эффективности отрасли.</h3>
+    <h3>По состоянию на февраль 2020 года сеть насчитывает 92 современных магазина нового формата. DBStore.ru входит в топ-3 крупнейших</h3>
+    <h3>онлайн-игроков рынка. </h3>
+    <h3>Юридическая информация: ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ «DBStore»</h3>
+    <h3>Идентификационный код 36962487</h3>
+    <h3>Местонахождение: 15600, Город Кострома, улица Свердова, дом 27, квартира 7</h3>
+    <h3>Адрес электронной почты: DBStore@mail.ru </h3>
+    <h3>Деятельность не лицензируется </h3>
+</div>
+
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a th:href="@{/about_as}">О нас</a>
+            <a th:href="@{/}">Каталог</a>
+            <a th:href="@{/basket}">Корзина</a>
+        </div>
+        <div class="info">
+            <h4>Контакты</h4>
+            <h4>8(800) 555-24-99</h4>
+            <h4>Город Кострома, улица Свердова, дом 27, квартира 7</h4>
+            <h4>E-mail: DBStore@mail.ru </h4>
+        </div>
+        <div class="images">
+            <img th:src="@{/img/vk.png}" alt="Vkontakte">
+            <img th:src="@{/img/fc.png}" alt="Facebook">
+            <img th:src="@{/img/fw.png}" alt="Twitter">
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

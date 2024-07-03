@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>О компании</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        height: 60px;
+    }
+
+    .navig {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 100%;
+    }
+
+    .navi {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navi li {
+        margin-right: 20px;
+    }
+
+    .navi li img {
+        height: 40px;
+    }
+
+    .avor {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .avor li {
+        margin-left: 20px;
+    }
+
+    .avor li a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .avor li a img {
+        height: 25px;
+        margin-right: 5px;
+    }
+
+    .container12 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Выравнивание по верхнему краю */
+        padding: 20px;
+    }
+
+    .content {
+        flex: 1; /* Занимает доступное пространство */
+    }
+
+    .text {
+        text-align: left; /* Выравнивание текста по левому краю */
+    }
+
+    .map {
+        width: 400px; /* Увеличиваем ширину карты */
+        height: 400px; /* Увеличиваем высоту карты */
+    }
+
+    footer {
+        background-color: #222;
+        color: #fff;
+        padding: 10px 20px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: 14px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .links a {
+        margin-right: 20px;
+        color: #FFD700;
+        text-decoration: none;
+    }
+
+    .info {
+        font-size: 14px;
+    }
+
+    .info h4 {
+        margin-bottom: 5px;
+    }
+
+    .info p {
+        margin: 0;
+    }
+
+    .images img {
+        width: 25px;
+        margin-right: 20px;
+    }
+
+</style>
+<body>
+<header>
+    <nav class="navig">
+        <ul class="navi">
+            <li class="logo"><img class="logo" th:src="@{/img/logo.png}" alt="Логотип"></li>
+            <li><a th:href="@{/about}">О нас</a></li>
+            <li><a th:href="@{/}">Каталог</a></li>
+            <li><a th:href="@{/bascet}">Корзина</a></li>
+        </ul>
+        <ul class="avor">
+            <li><a th:href="@{/Authorization}"><img class="Authorization" th:src="@{/img/Authorization.png}" alt="Авторизоваться"></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container12">
+    <div class="content">
+        <div class="text">
+            <h1>О нашей компании</h1>
+            <p>Мы – первый омниканальный ритейлер бытовой</p>
+            <p>техники и электроники в России, лидер по</p>
+            <p>эффективности отрасли. По состоянию на февраль 2020</p>
+            <p>года сеть насчитывает 92 современных магазина нового</p>
+            <p>формата. DBStore.ru входит в топ-3 крупнейших онлайн</p>
+            <p>игроков рынка. </p>
+            <h2>Для покупателей</h2>
+            <p>Наши клиенты – в центре всего, что мы делаем,</p>
+            <p>Доверие - главное. Мы строим долгосрочные отношения,</p>
+            <p>Во всём, чем занимаемся, стремимся быть экспертами,</p>
+            <p>Открыты для предложений и улучшений.</p>
+            <h2>Для партнеров</h2>
+            <p>Прозрачность - основа совместного бизнеса,</p>
+            <p>Работаем, соблюдая этику бизнеса,</p>
+            <p>Уважаем другие мнения и интересы,</p>
+            <p>Выполняем обязательства и берем ответственность за свои решения,</p>
+            <p>Нетерпимы к коррупции.</p>
+        </div>
+    </div>
+    <div class="map">
+        <iframe th:src="@{'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d532.0124066951557!2d40.9360346224286!3d57.766559891433474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ad4fe7441f739b%3A0x6f63fdc35395d718!2z0YPQuy4g0KHQstC10YDQtNC70L7QstCwLCDQmtC-0YHRgtGA0L7QvNCwLCDQmtC-0YHRgtGA0L7QvNGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjw!5e0!3m2!1sru!2spl!4v1688170643648!5m2!1sru!2spl'}" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a th:href="@{/about_as}">О нас</a>
+            <a th:href="@{/index}">Каталог</a>
+            <a th:href="@{/bascet}">Корзина</a>
+        </div>
+        <div class="info">
+            <h4>Контакты</h4>
+            <p>8(800) 555-24-99</p>
+            <p>Город Кострома, улица Свердова, дом 27, квартира 7</p>
+            <p>E-mail: DBStore@mail.ru</p>
+        </div>
+        <div class="images">
+            <a th:href="@{index}"><img th:src="@{/img/vk.png}" alt="Vkontacte"></a>
+            <a th:href="@{index}"><img th:src="@{/img/fc.png}" alt="Facebook"></a>
+            <a th:href="@{index}"><img th:src="@{/img/tw.png}" alt="Twitter"></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

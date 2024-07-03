@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <style>
+        .total-cost-container {
+            text-align: center; /* Центрируем содержимое */
+            margin-top: 20px; /* Добавляем отступ сверху */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            height: 60px;
+        }
+
+        .navig {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+        .navi {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navi li {
+            margin-right: 20px;
+        }
+
+        .navi li img {
+            height: 40px;
+        }
+
+        .avor {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .avor li {
+            margin-left: 20px;
+        }
+
+        .avor li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .avor li a img {
+            height: 25px;
+            margin-right: 5px;
+        }
+
+        .container12 {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            padding: 20px;
+        }
+
+        .content {
+            flex: 1; /* Занимает доступное пространство */
+        }
+
+        .text {
+            text-align: left; /* Выравнивание текста по левому краю */
+        }
+
+        .map {
+            width: 400px; /* Увеличиваем ширину карты */
+            height: 400px; /* Увеличиваем высоту карты */
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .links a {
+            margin-right: 20px;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .info {
+            font-size: 14px;
+        }
+
+        .info h4 {
+            margin-bottom: 5px;
+        }
+
+        .info p {
+            margin: 0;
+        }
+
+        .images img {
+            width: 25px;
+            margin-right: 20px;
+        }
+
+
+        /* Общие стили для всего документа */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            height: 60px; /* Устанавливаем высоту заголовка */
+        }
+
+        .navig {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+        .navi {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navi li {
+            margin-right: 20px;
+        }
+
+        .navi li img {
+            height: 40px; /* Уменьшаем высоту логотипа */
+        }
+
+        .avor {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .avor li {
+            margin-left: 20px;
+        }
+
+        .avor li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .avor li a img {
+            height: 25px; /* Уменьшаем высоту иконки авторизации */
+            margin-right: 5px;
+        }
+
+        /* Стили для footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer .links {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .footer .info {
+            flex: 1;
+            max-width: 300px;
+            margin: 10px 0;
+        }
+
+        .footer .images {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .footer .images img {
+            max-height: 30px;
+            margin-left: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 60%;
+            margin: 0 auto; /* Центрирование элемента */
+        }
+
+        .cart-item img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-price,
+        .cart-item-quantity {
+            margin-left: 10px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+        }
+
+        .checkout-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto; /* Центрирование кнопки */
+        }
+
+        .checkout-button:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            padding: 80px 20px 20px; /* Увеличенный padding-top для учета фиксированного header */
+        }
+
+        /* Стили для сообщения об успешном заказе */
+        .message {
+            text-align: center;
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="navig">
+        <nav class="navig">
+            <ul class="navi">
+                <li><img th:src="@{/img/logo.png}" alt="Logo"></li>
+                <li><a th:href="@{/about}">О нас</a></li>
+                <li><a th:href="@{/}">Каталог</a></li>
+                <li><a th:href="@{/basket}">Корзина</a></li>
+            </ul>
+            <ul class="avor">
+                <li><a th:href="@{/Authorization}"><img class="Authorization" th:src="@{/img/Authorization.png}" alt="Авторизоваться"></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <h1>Корзина</h1>
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+    <div th:each="item : ${bascetItems}">
+    <div class="cart-item">
+            <img th:src="@{${item.product.imgUrl}}" alt="Product Image">
+            <div class="cart-item-details">
+                <h2 th:text="${item.product.name}">Product Name</h2>
+                <p th:text="${item.product.description}">Product Description</p>
+                <div class="cart-item-price" th:text="'Цена: ' + ${item.price} + ' руб.'">Цена: 0 руб.</div>
+                <div class="cart-item-quantity">
+                    Количество:
+                    <div class="quantity-control">
+                        <button onclick="updateCart(${item.id}, ${item.quantity - 1})">-</button>
+                        <input type="text" class="quantity-input" th:value="${item.quantity}" th:attr="data-itemid=${item.id}" readonly>
+                        <button onclick="updateCart(${item.id}, ${item.quantity + 1})">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="total-cost-container">
+    <div id="total-cost"></div> <!-- Элемент для отображения итоговой стоимости -->
+        </div>
+    <form th:action="@{/bascet/checkout}" method="post">
+        <button type="submit" class="checkout-button">Оформить заказ</button>
+    </form>
+</div>
+
+<footer>
+    <div class="footer">
+        <div class="links">
+            <a th:href="@{/about_as}">О нас</a>
+            <a th:href="@{/}">Каталог</a>
+            <a th:href="@{/basket}">Корзина</a>
+        </div>
+        <div class="info">
+            <h4>Контакты</h4>
+            <h4>8(800) 555-24-99</h4>
+            <h4>Город Кострома, улица Свердова, дом 27, квартира 7</h4>
+            <h4>E-mail: DBStore@mail.ru </h4>
+        </div>
+        <div class="images">
+            <img th:src="@{/img/vk.png}" alt="Vkontakte">
+            <img th:src="@{/img/fc.png}" alt="Facebook">
+            <img th:src="@{/img/fw.png}" alt="Twitter">
+        </div>
+    </div>
+</footer>
+
+<script>
+    function updateCart(itemId, newQuantity) {
+        if (newQuantity <= 0) {
+            alert("Количество должно быть больше нуля");
+            return;
+        }
+
+        fetch('/basket/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ itemId: itemId, quantity: newQuantity }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // После успешного обновления, обновляем количество на странице
+                const quantityInput = document.querySelector(`.quantity-input[data-itemid="${itemId}"]`);
+                if (quantityInput) {
+                    quantityInput.value = newQuantity;
+                }
+                // Пересчитываем итоговую стоимость
+                calculateTotal();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const priceElement = item.querySelector('.cart-item-price');
+            const quantity = parseInt(item.querySelector('.quantity-input').value);
+            const pricePerUnit = parseFloat(priceElement.innerText.replace('Цена: ', '').replace(' руб.', ''));
+            const itemTotal = pricePerUnit * quantity;
+            total += itemTotal;
+        });
+        document.getElementById('total-cost').innerText = 'Итоговая стоимость: ' + total.toFixed(2) + ' руб.';
+    }
+
+    // Вызываем calculateTotal() после загрузки страницы
+    window.onload = function() {
+        calculateTotal();
+    };
+</script>
+
+</body>
+</html>
